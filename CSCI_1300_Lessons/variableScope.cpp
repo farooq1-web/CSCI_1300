@@ -31,13 +31,13 @@ double cube_Volume(double side_length)
     }
     //This will print 5, not 10 as 10 is local to the conditional
     cout<<length<<endl;
-
     
 }
 
 void updateVariable(int& var) //& means address of
 {
     var = 25; //var has the same memory location
+    
 }
 
 int memory_location()
@@ -49,17 +49,19 @@ int memory_location()
     but it can input a variable = 10 as this as memory location
     */
     updateVariable(side_len); //adress of side_len is passes to a function
+    return 0;
 }
 
 //EXAMPLES -----------------------------------------------------------------------------------------------------------
 //Write two functions to swap two numbers, use pass by value and for the other use pass by reference
 
-void swap(int &a, int &b)
+//any changes made to to this function are destroyed
+void change(int &a, int &b)
 {
-    /*this doesn't work
-    a=b
-    b=a
-    */
+    int c=a;
+    a=b;
+    b=c;
+    
 
 }
 int main()
@@ -70,3 +72,37 @@ int main()
     //afer swap, a=6, b=5
 }
 //Examples
+//Example of pass by value
+/*
+a copy of the variable is passed to the function
+changes made do not affect the original variable
+the copy lives in a seperate memory location
+use case is when you want to protect the original data from being changed
+*/
+void modify(int x)
+{
+    x = x+10;
+}
+
+void modifyCall()
+{
+    int a = 5; 
+    modify (a); //a is still 5, referencing x but x is destroyed in the function 
+}
+//Example of pass by reference
+/*
+The function recieves a reference to the original variable
+Changes made inside the function do affect the original variable
+no new copy is made, both refer to the same memory location
+use case is when you want to modify the original variable
+*/
+void swap(int& x) //X is a reference to the original variable
+{
+    x = x + 10;
+}
+
+void swapCall()
+{
+    int a = 5; 
+    swap(a); //a is now 15
+}
