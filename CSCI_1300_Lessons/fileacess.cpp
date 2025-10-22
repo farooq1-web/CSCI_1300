@@ -28,6 +28,7 @@ out_file.open("output.txt");
 out_file<<"The word is"<<word<<endl;
 */
 
+
 #include <iostream>
 #include <fstream> //need this to use ifstream and ofstream
 using namespace std;
