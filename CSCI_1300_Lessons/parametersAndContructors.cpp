@@ -49,9 +49,53 @@ class Library
 
     //parameter types have to match implementation, dont need variable names in the def
 
-
-
+    string getName();
+    int getCurrentBooks();
+    void setName(string);
+    int getPageCount(int);
+    bool addPageCount(int);
 };
+
+string Library::getName()
+{
+    return _name;
+}
+
+int Library::getCurrentBooks()
+{
+    return _current_books;
+}
+
+void Library::setName(string name)
+{
+    _name = name; //update the private data member
+}
+
+int Library::getPageCount(int index)
+{
+    if(index >=_MAX_BOOKS || index < 0)
+    {
+        return -1;
+    }
+    else
+    {
+        return _page_counts[index];
+    }
+}
+bool Library::addPageCount(int count)
+{
+    //check if there is room in the array, if so add to array and increment _current_books
+    if(_current_books == _MAX_BOOKS)
+    {
+        return false;
+    }
+    else
+    {
+        _page_counts[_current_books] = count;
+        _current_books++;
+    }
+    return true;
+}
 //constructor implementation
 Library::Library()
 {
@@ -61,6 +105,7 @@ Library::Library()
     {
         _page_counts[i] = 0;
     }
+    cout<<"in the default contructor"<<endl;
 }
 Library::Library(string name)
 {
@@ -70,6 +115,7 @@ for (int i = 0; i < _MAX_BOOKS; i++)
 {
     _page_counts[i] = 0;
 }
+cout<<"one parameter contructor"<<endl;
 
 }
 
@@ -81,11 +127,24 @@ Library::Library(string name, int pageCounts[], int currentBooks)
     {
         _page_counts[i] = pageCounts[i];
     }
+    for (int i = _current_books; i<_MAX_BOOKS; i++)
+    {
+        _page_counts[i] = 0;
+    }
+    cout<<"3 parameter contructor"<<endl;
     
 }
 
 
 int main()
 {
-
+    Library lib; //default contructor
+    Library lib2("Boulder Public Library");
+    int pageCounts[] = {100, 200, 300};
+    Library lib3("Boulder Public Library", pageCounts, 4);
+    
+    lib.addPageCount(500);
+    cout<<"there are "<<lib.getCurrentBooks()<<" books in the library"<<endl;
+    cout<<"there are "<<lib3.getPageCount(2)<<" total pages in that book"<<endl;
+    return 0;
 }
