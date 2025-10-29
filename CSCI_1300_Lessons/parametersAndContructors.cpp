@@ -54,8 +54,24 @@ class Library
     void setName(string);
     int getPageCount(int);
     bool addPageCount(int);
+    double getAveragePageCounts();
 };
-
+double Library::getAveragePageCounts()
+{
+    double sum =0;
+    for (int i = 0; i < _current_books; i++)
+    {
+        sum += _page_counts[i];
+    }
+    if(_current_books == 0)
+    {
+        return 0;
+    }
+    else
+    {
+    return sum/_current_books;
+    }
+}
 string Library::getName()
 {
     return _name;
@@ -146,5 +162,7 @@ int main()
     lib.addPageCount(500);
     cout<<"there are "<<lib.getCurrentBooks()<<" books in the library"<<endl;
     cout<<"there are "<<lib3.getPageCount(2)<<" total pages in that book"<<endl;
+    cout<<"Average page count: "<<lib.getAveragePageCounts()<<endl;
+    cout<<"Average page count: "<<lib3.getAveragePageCounts()<<endl;
     return 0;
 }
