@@ -1,0 +1,29 @@
+
+/*Seperate compliation
+code split into multiple source files not just one
+Reasons: takes time to compile large files
+developers work on teams, distribute work by distributing files
+
+souce files have code dependincies - one file define classes and functioons that another file needs
+Provide structure to know it it's used correctly
+doesn't need to know what the class does, just how it looks
+communication between files happens in header files
+
+header files contain 
+def of class
+def of constants
+declerations of non member functions
+
+source files 
+implementation of member functions and non member functions
+
+seperating class defininition from the class implementation
+
+header file, .h extension
+source file, .cpp extension
+class def in .h file
+class implementation in .cpp file
+*/
+
+
+//THIS CODE WILL BE SEPERATING THE COMPLIATION OF THE CODE THAT IS IN PARAMETERSANDCONSTRUCTORS.CPP FILE
