@@ -22,7 +22,7 @@ struct Adress
 int main()
 {
     
-    Adress adress; //creating a variable of type adress in memory
+    Adress adress; //creating a variable of type Adress in memory
     adress.street = " ";
 }
 
