@@ -58,34 +58,54 @@ v2.erase(v2.begin() + 2)
 #include <vector>
 using namespace std;
 
+void vectorFunction(vector<int> i);
+
 int main()
 {
-vector<int> v = {1,30,45,71,0,9, 34, 64, 91, 11};
-vector<int> v2;
 
-for(int i = 0; i<v.size(); i++)
-{
-    if(v[i] > 20)
+    //vectors are pass by value just like regular variables, and unlike arrays which are pass by reference
+    //changing i[0] in the function doesn't perserve the change in main
+    vector<int> i = {1,2,3,4};
+    vectorFunction(i);
+    vector<int> v = {1,30,45,71,0,9, 34, 64, 91, 11};
+    vector<int> v2;
+
+    for(int i = 0; i<v.size(); i++)
     {
-        v2.push_back(v[i]); // add element in v to v2
-        v.erase(v.begin() + i);
-        i--;
+        if(v[i] > 20)
+        {
+            v2.push_back(v[i]); // add element in v to v2
+            v.erase(v.begin() + i);
+            i--;
+        }
     }
-}
 
-cout<<"Vector 1 contains"<<endl;
-for (int i = 0; i < v.size(); i++)
-{
-    cout<<v[i]<<endl;
-}
-cout<<"Vector 2 contains"<<endl;
+    cout<<"Vector 1 contains"<<endl;
+    for (int i = 0; i < v.size(); i++)
+    {
+        cout<<v[i]<<endl;
+    }
+    cout<<"Vector 2 contains"<<endl;
 
-for (int i = 0; i < v2.size(); i++)
-{
-    cout<<v2[i]<<endl;
-}
+    for (int i = 0; i < v2.size(); i++)
+    {
+        cout<<v2[i]<<endl;
+    }
 
 
 
 return 0;
+}
+
+//vector<int> is the type of the variable i
+void vectorFunction(vector<int> i)
+{
+    cout<<i.size()<<endl; //can acess i since it's a function parameter
+    i[0] = 15;
+}
+//change function to be pass by reference
+void vectorFunctionByRef(vector<int>& i)
+{
+    cout<<i.size()<<endl; //can acess i since it's a function parameter
+    i[0] = 15;
 }
